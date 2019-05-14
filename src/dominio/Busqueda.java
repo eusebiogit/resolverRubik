@@ -134,6 +134,8 @@ public abstract class Busqueda {
         return solucion;
     }
 
+    
+    
     /**
      * Definición del método que inserta en el espacio de búsqueda en función de la 
      * estrategia

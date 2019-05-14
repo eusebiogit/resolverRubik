@@ -1,0 +1,12 @@
+
+build/
+
+nbproject/
+
+build\.xml
+
+manifest\.mf
+
+rubik\.tar\.gz
+
+rubik\.zip

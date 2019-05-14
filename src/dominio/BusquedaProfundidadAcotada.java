@@ -31,11 +31,10 @@ public class BusquedaProfundidadAcotada extends BusquedaProfundidadSimple {
      * @return
      */
     @Override
-    public ArrayList<Estado> buscar() {
+    public String buscar() {
         estados = new Hashtable();
         System.out.println("profundidadMaxima: " + profundidadMaxima);
         ArrayList<NodoBusqueda> LS = null;
-        ArrayList<Estado> solucion = null;
         NodoBusqueda actual = null;
         NodoBusqueda inicial = new NodoBusqueda(null, problema.getInicial(), 0, 0);
         frontera.insertar(inicial);
@@ -51,45 +50,17 @@ public class BusquedaProfundidadAcotada extends BusquedaProfundidadSimple {
                     System.out.println(" Completado: " + actual.getActual().getActual().completado() + " complejidadEspacial" + complejidadEspacial);
                 }
                 int h = actual.getActual().getActual().completado();
-                solucionParcial(actual);
                 if (LS.get(0).getProfundidad() <= profundidadMaxima) { //busqueda profundidad acotada
                     creaListaNodosArbol(LS, actual);
                     complejidadEspacial += LS.size();
                 }
             }
+            mostrarSolucionParcial(actual);
         } while (!resuelto && !frontera.esVacia());
-        if (resuelto) {
-            solucion = creaSolucion(actual);
-        } else {
-            //No hay solucion => solucion = null
-        }
         complejidadTemporal = (System.currentTimeMillis() - tiempoInicio) / 1000;
-        return solucion;
+        return "Solución Final: \n\n" + actual;
     }
 
-    /**
-     * Devuelve las mejores las soluciones más completas que va encontrando
-     * durante el proceso
-     *
-     * @param actual
-     */
-    @Override
-    protected void solucionParcial(NodoBusqueda actual) {
-        int h = actual.getActual().getActual().completado();
-
-        if (h > heu) {
-            String op = "";
-            ArrayList<Estado> solucionparcial = creaSolucion(actual);
-            for (Estado e : solucionparcial) {
-                op += e.getAccion() + "\n\n";
-            }
-            heu = h;
-            persistencia.OperacionesPersistencia.guardarenFichero("/home/ordenador/Escritorio/pasos.txt", "OP :"
-                    + actual.getActual().getAccion()
-                    + "\n Completado \n" + actual.getActual().getActual().completado() + "\n"
-                    + actual.getActual().getActual() + " \n" + op);
-
-        }
-    }
+    
 
 }

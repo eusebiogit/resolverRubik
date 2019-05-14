@@ -23,8 +23,8 @@ import persistencia.OperacionesPersistencia;
  */
 public abstract class Busqueda {
 
-    public static int vecespoda = 0;
-    static int heu = 0;
+    private int vecespoda = 0;
+    private int avance;
 
     protected Problema problema;
     protected double costo;
@@ -43,6 +43,7 @@ public abstract class Busqueda {
         this.poda = poda;
         frontera = new Frontera();
         estados = new Hashtable();
+        this.avance = 0;
     }
 
     /**
@@ -55,6 +56,7 @@ public abstract class Busqueda {
         frontera = new Frontera();
         estados = new Hashtable();
         this.poda = poda;
+        this.avance = 0;
     }
 
     /**
@@ -102,14 +104,14 @@ public abstract class Busqueda {
     }
 
     /**
-     * La búsqueda consiste en extraer uno de los nodos en función de la estrategia
-     * comprobar si es una solución y en caso de no serla, generar los sucesores y añadirlos
-     * al espacio de búsquedas
-     * @return 
+     * La búsqueda consiste en extraer uno de los nodos en función de la
+     * estrategia comprobar si es una solución y en caso de no serla, generar
+     * los sucesores y añadirlos al espacio de búsquedas
+     *
+     * @return
      */
-    public ArrayList<Estado> buscar() {  //busqueda general
+    public String buscar() {  //busqueda general
         ArrayList<NodoBusqueda> LS = null;
-        ArrayList<Estado> solucion = null;
         NodoBusqueda actual = null;
         NodoBusqueda inicial = new NodoBusqueda(null, problema.getInicial(), 0, 0);
         frontera.insertar(inicial);
@@ -124,77 +126,36 @@ public abstract class Busqueda {
                 creaListaNodosArbol(LS, actual);
                 complejidadEspacial += LS.size();
             }
-            solucionParcial(actual);
+            mostrarSolucionParcial(actual);
         } while (!resuelto && !frontera.esVacia());
-        if (resuelto) {
-            solucion = creaSolucion(actual);
-        }
         complejidadTemporal = (System.currentTimeMillis() - tiempoInicio) / 1000;
-
-        return solucion;
+        return "Solución Final: \n\n" + actual;
     }
 
-    
-    
+    protected void mostrarSolucionParcial(NodoBusqueda actual) {
+        int avance = actual.getActual().getActual().completado();
+        if (avance > this.avance && avance < 54) {
+            this.avance = avance;
+            System.out.println("Solución parcial, cubo mejorado: ");
+            System.out.println("Completado: " + this.avance);
+            System.out.println(actual);
+        }
+    }
+
     /**
-     * Definición del método que inserta en el espacio de búsqueda en función de la 
-     * estrategia
+     * Definición del método que inserta en el espacio de búsqueda en función de
+     * la estrategia
+     *
      * @param LS
-     * @param actual 
+     * @param actual
      */
     protected abstract void creaListaNodosArbol(
             ArrayList<NodoBusqueda> LS, NodoBusqueda actual);
 
     /**
-     * Una vez alcanzada la solución se devuelven los pasos que han sido dados
-     * @param actual
-     * @return 
-     */
-    protected ArrayList<Estado> creaSolucion(NodoBusqueda actual) {
-        profundidad = actual.getProfundidad();
-
-        Stack<Estado> pila = new Stack();
-        ArrayList<Estado> r = new ArrayList();
-        NodoBusqueda aux = actual;
-        while (aux != null) {
-            pila.add(aux.getActual());
-            aux = aux.getPadre();
-
-        }
-        while (!pila.empty()) {
-            r.add(pila.pop());
-        }
-
-        return r;
-    }
-
-    /**
-     * Devuelve las mejores las soluciones más completas que va encontrando
-     * durante el proceso
-     *
-     * @param actual
-     */
-    protected void solucionParcial(NodoBusqueda actual) {
-        int h = actual.getActual().getActual().completado();
-
-        if (h > heu) {
-            String op = "";
-            ArrayList<Estado> solucionparcial = creaSolucion(actual);
-            for (Estado e : solucionparcial) {
-                op += e.getAccion() + "\n\n";
-            }
-            heu = h;
-            persistencia.OperacionesPersistencia.guardarenFichero("/home/ordenador/Escritorio/pasos.txt", "OP :"
-                    + actual.getActual().getAccion()
-                    + "\n Completado \n" + actual.getActual().getActual().completado() + "\n"
-                    + actual.getActual().getActual() + " \n" + op);
-
-        }
-    }
-
-    /**
      * Estadísticas
-     * @return 
+     *
+     * @return
      */
     @Override
     public String toString() {

@@ -14,6 +14,7 @@ public class NodoBusqueda implements Comparable, Serializable {
     private Estado actual;
     private int profundidad;
     private int valor;
+    private String operaciones;
 
     /**
      *
@@ -27,7 +28,23 @@ public class NodoBusqueda implements Comparable, Serializable {
         this.actual = actual;
         this.profundidad = profundidad;
         this.valor = valor;
+        this.operaciones = getOperacionesPadre()+actual.getAccion();
+    }
+    
+    private String getOperacionesPadre(){
+        String resultado="";
+        if(padre!=null){
+            resultado=padre.getOperaciones()+" -> ";
+        }
+        return resultado;
+    }
 
+    /**
+     *
+     * @return
+     */
+    public String getOperaciones() {
+        return operaciones;
     }
 
     /**
@@ -81,6 +98,11 @@ public class NodoBusqueda implements Comparable, Serializable {
     public Estado getActual() {
         return actual;
     }
+    
+    @Override
+    public String toString(){
+        return this.operaciones+"\n"+this.actual;
+    }
 
     /**
      *
@@ -93,8 +115,9 @@ public class NodoBusqueda implements Comparable, Serializable {
 
     /**
      * Verdadero si dos nodos de búsqueda son iguales
+     *
      * @param obj
-     * @return 
+     * @return
      */
     @Override
     public boolean equals(Object obj) {
@@ -111,8 +134,9 @@ public class NodoBusqueda implements Comparable, Serializable {
 
     /**
      * Compara dos nodos de búsqueda en función de su valor
+     *
      * @param o
-     * @return 
+     * @return
      */
     @Override
     public int compareTo(Object o) {

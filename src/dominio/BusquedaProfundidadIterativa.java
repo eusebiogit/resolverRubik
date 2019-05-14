@@ -41,20 +41,20 @@ public class BusquedaProfundidadIterativa extends BusquedaProfundidadAcotada {
      * @return
      */
     @Override
-    public ArrayList<Estado> buscar() {
-        ArrayList<Estado> res;
+    public String buscar() {
+        String solucion=null;
         double tiempoInicioTotal = System.currentTimeMillis();
         do {
-            res = super.buscar();
-            if (res == null) {
+            solucion = super.buscar();
+            if (solucion == null) {
                 profundidadMaxima += iteracion;
                 complejidadTemporalIteraciones.add(super.getComplejidadTemporal());
                 complejidadEspacialIteraciones.add(super.getComplejidadEspacial());
             }
-        } while (res == null);
+        } while (solucion == null);
         complejidadTemporalTotal = (System.currentTimeMillis() - tiempoInicioTotal) / 1000;
         complejidadEspacialFinal = super.getComplejidadEspacial();
-        return res;
+        return solucion;
     }
 
     /**

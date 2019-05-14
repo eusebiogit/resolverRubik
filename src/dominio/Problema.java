@@ -44,8 +44,7 @@ public class Problema {
      * @return 
      */
     public ArrayList<NodoBusqueda> sucesores(NodoBusqueda e) {
-        ArrayList<NodoBusqueda> r = new ArrayList();
-
+        ArrayList<NodoBusqueda> r = new ArrayList<NodoBusqueda>();
         ArrayList<Estado> estadosSucesores = getEstadosSucesores(e.getEstado());
         for (Estado estado : estadosSucesores) {
             r.add(new NodoBusqueda(e, estado, e.getProfundidad() + 1, e.getValor() + 1));
@@ -61,7 +60,7 @@ public class Problema {
     public ArrayList<Estado> getEstadosSucesores(Estado e) {
         Cubo actual = e.getActual();
         Cubo c;
-        ArrayList<Estado> r = new ArrayList();
+        ArrayList<Estado> r = new ArrayList<Estado>();
         for (int i = 0; i < 3; i++) {
             c = (Cubo) actual.clone();
             c.X(i);

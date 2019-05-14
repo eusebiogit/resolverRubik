@@ -101,7 +101,7 @@ public class NodoBusqueda implements Comparable, Serializable {
     
     @Override
     public String toString(){
-        return this.operaciones+"\n"+this.actual;
+        return "Pasos: "+this.getProfundidad()+"\n"+this.operaciones+"\n"+this.actual;
     }
 
     /**

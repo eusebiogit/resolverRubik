@@ -44,7 +44,11 @@ public class BusquedaProfundidadAcotada extends BusquedaProfundidadSimple {
             actual = frontera.elimina();
             if (problema.testObjetivo(actual.getActual())) {
                 resuelto = true;
-                solucion = "Solución Final: \n\n" + actual;
+                if (!this.frontera.esVacia()) {
+                    solucion = "Solución Final: \n\n" + actual;
+                } else {
+                    solucion = "Solución no encontrada";
+                }
             } else {
                 LS = problema.sucesores(actual);
                 if (LS.get(0).getProfundidad() <= profundidadMaxima) { //busqueda profundidad acotada

@@ -23,9 +23,8 @@ import persistencia.OperacionesPersistencia;
  */
 public abstract class Busqueda {
 
-    private int vecespoda = 0;
-    private int avance;
-
+    protected int vecespoda = 0;
+    protected int avance;
     protected Problema problema;
     protected double costo;
     protected int complejidadEspacial;
@@ -115,6 +114,7 @@ public abstract class Busqueda {
         NodoBusqueda actual = null;
         NodoBusqueda inicial = new NodoBusqueda(null, problema.getInicial(), 0, 0);
         frontera.insertar(inicial);
+        String solucion = null;
         double tiempoInicio = System.currentTimeMillis();
         boolean resuelto = false;
         do {
@@ -128,10 +128,20 @@ public abstract class Busqueda {
             }
             mostrarSolucionParcial(actual);
         } while (!resuelto && !frontera.esVacia());
+        if (!this.frontera.esVacia()) {
+            solucion = "Solución Final: \n\n" + actual;
+        } else {
+            solucion = "Solución no encontrada";
+        }
         complejidadTemporal = (System.currentTimeMillis() - tiempoInicio) / 1000;
-        return "Solución Final: \n\n" + actual;
+        return solucion;
     }
 
+    /**
+     * Muestra la mejor solución encontrada hasta el momento cuando aparece
+     *
+     * @param actual
+     */
     protected void mostrarSolucionParcial(NodoBusqueda actual) {
         int avance = actual.getActual().getActual().completado();
         if (avance > this.avance && avance < 54) {

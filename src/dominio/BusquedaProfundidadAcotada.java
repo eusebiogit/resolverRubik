@@ -33,23 +33,20 @@ public class BusquedaProfundidadAcotada extends BusquedaProfundidadSimple {
     @Override
     public String buscar() {
         estados = new Hashtable();
-        System.out.println("profundidadMaxima: " + profundidadMaxima);
         ArrayList<NodoBusqueda> LS = null;
         NodoBusqueda actual = null;
         NodoBusqueda inicial = new NodoBusqueda(null, problema.getInicial(), 0, 0);
         frontera.insertar(inicial);
         double tiempoInicio = System.currentTimeMillis();
         boolean resuelto = false;
+        String solucion = null;
         do {
             actual = frontera.elimina();
             if (problema.testObjetivo(actual.getActual())) {
                 resuelto = true;
+                solucion = "Solución Final: \n\n" + actual;
             } else {
                 LS = problema.sucesores(actual);
-                if (complejidadEspacial % 10000 == 0) {
-                    System.out.println(" Completado: " + actual.getActual().getActual().completado() + " complejidadEspacial" + complejidadEspacial);
-                }
-                int h = actual.getActual().getActual().completado();
                 if (LS.get(0).getProfundidad() <= profundidadMaxima) { //busqueda profundidad acotada
                     creaListaNodosArbol(LS, actual);
                     complejidadEspacial += LS.size();
@@ -58,9 +55,7 @@ public class BusquedaProfundidadAcotada extends BusquedaProfundidadSimple {
             mostrarSolucionParcial(actual);
         } while (!resuelto && !frontera.esVacia());
         complejidadTemporal = (System.currentTimeMillis() - tiempoInicio) / 1000;
-        return "Solución Final: \n\n" + actual;
+        return solucion;
     }
-
-    
 
 }

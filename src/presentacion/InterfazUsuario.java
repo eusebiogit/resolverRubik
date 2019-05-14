@@ -51,17 +51,17 @@ public class InterfazUsuario {
 
         Cubo cubo = new Cubo(c0, c1, c2, c3, c4, c5);
 
-        Problema p = new Problema(cubo);
-//       ProblemaA p=new ProblemaA(cubo);
+//        Problema p = new Problema(cubo);
+       ProblemaA p=new ProblemaA(cubo);
 //        ProblemaVoraz p = new ProblemaVoraz(cubo);
 
 //        BusquedaVoraz b = new BusquedaVoraz(p, true);
-        //BusquedaA b=new BusquedaA(p,true);
+        BusquedaA b=new BusquedaA(p,true);
 //        BusquedaAleatorio b=new BusquedaAleatorio(p,false);
 //        BusquedaAnchura b=new BusquedaAnchura(p,false);
         //BusquedaProfundidadSimple b=new BusquedaProfundidadSimple(p,true);
         // BusquedaProfundidadAcotada b=new BusquedaProfundidadAcotada(p,8,true);
-        BusquedaProfundidadIterativa b = new BusquedaProfundidadIterativa(p, 8, 1, true);
+//        BusquedaProfundidadIterativa b = new BusquedaProfundidadIterativa(p, 8, 1, true);
 
         System.out.println(b.buscar());
 

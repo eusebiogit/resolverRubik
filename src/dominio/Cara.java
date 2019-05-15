@@ -28,6 +28,129 @@ public class Cara implements Cloneable, Serializable {
     }
 
     /**
+     * Devuelve el valor de la cara en función de sus casillas
+     *
+     * @return
+     */
+    public int getValorCara() {
+        String color = this.getColorCara();
+        ArrayList<Fila> filas = this.getFilas();
+        ArrayList<String> casillas;
+        int valor = 0;
+        switch (color) {
+            case "rojo":
+                for (Fila f : filas) {
+                    casillas = f.getCasillas();
+                    for (String c : casillas) {
+                        switch (c) {
+                            case "blanco":
+                            case "amarillo":
+                            case "verde":
+                            case "azul":
+                                valor += 1;
+                                break;
+                            case "naranja":
+                                valor += 2;
+                                break;
+                        }
+                    }
+                }
+                break;
+            case "blanco":
+                for (Fila f : filas) {
+                    casillas = f.getCasillas();
+                    for (String c : casillas) {
+                        switch (c) {
+                            case "rojo":
+                            case "naranja":
+                            case "verde":
+                            case "azul":
+                                valor += 1;
+                                break;
+                            case "amarillo":
+                                valor += 2;
+                                break;
+                        }
+                    }
+                }
+                break;
+            case "naranja":
+                for (Fila f : filas) {
+                    casillas = f.getCasillas();
+                    for (String c : casillas) {
+                        switch (c) {
+                            case "amarillo":
+                            case "naranja":
+                            case "verde":
+                            case "azul":
+                                valor += 1;
+                                break;
+                            case "rojo":
+                                valor += 2;
+                                break;
+                        }
+                    }
+                }
+                break;
+            case "amarillo":
+                for (Fila f : filas) {
+                    casillas = f.getCasillas();
+                    for (String c : casillas) {
+                        switch (c) {
+                            case "rojo":
+                            case "naranja":
+                            case "verde":
+                            case "azul":
+                                valor += 1;
+                                break;
+                            case "blanco":
+                                valor += 2;
+                                break;
+                        }
+                    }
+                }
+                break;
+            case "verde":
+                for (Fila f : filas) {
+                    casillas = f.getCasillas();
+                    for (String c : casillas) {
+                        switch (c) {
+                            case "rojo":
+                            case "naranja":
+                            case "verde":
+                            case "blanco":
+                                valor += 1;
+                                break;
+                            case "azul":
+                                valor += 2;
+                                break;
+                        }
+                    }
+                }
+                break;
+            case "azul":
+                for (Fila f : filas) {
+                    casillas = f.getCasillas();
+                    for (String c : casillas) {
+                        switch (c) {
+                            case "rojo":
+                            case "naranja":
+                            case "amarillo":
+                            case "blanco":
+                                valor += 1;
+                                break;
+                            case "verde":
+                                valor += 2;
+                                break;
+                        }
+                    }
+                }
+                break;
+        }
+        return valor;
+    }
+
+    /**
      *
      * @return
      */
@@ -40,8 +163,9 @@ public class Cara implements Cloneable, Serializable {
     }
 
     /**
-     * Modifica la información de la cara para simular un giro de una fila, 
-     * se corresponde con las operaciones X
+     * Modifica la información de la cara para simular un giro de una fila, se
+     * corresponde con las operaciones X
+     *
      * @param c
      * @param fila
      * @return
@@ -54,12 +178,12 @@ public class Cara implements Cloneable, Serializable {
     }
 
     /**
-     * Transponer una cara se corresponde con las operaciones Z
-     * Sentido contrario al que siguen las agujas de un reloj
+     * Transponer una cara se corresponde con las operaciones Z Sentido
+     * contrario al que siguen las agujas de un reloj
      */
     public void transponerIzquierdo() {
         Fila filaA = new Fila(fila0.getCasillas().get(2), fila1.getCasillas().get(2),
-                 fila2.getCasillas().get(2));
+                fila2.getCasillas().get(2));
         Fila filaB = new Fila(fila0.getCasillas().get(1),
                 fila1.getCasillas().get(1),
                 fila2.getCasillas().get(1));
@@ -72,8 +196,8 @@ public class Cara implements Cloneable, Serializable {
     }
 
     /**
-     * Transponer una cara se corresponde con las operaciones Z 
-     * Sentido que siguen las agujas de un reloj
+     * Transponer una cara se corresponde con las operaciones Z Sentido que
+     * siguen las agujas de un reloj
      */
     public void transponerDerecho() {
         Fila filaA = new Fila(fila2.getCasillas().get(0),
@@ -93,7 +217,8 @@ public class Cara implements Cloneable, Serializable {
 
     /**
      * El color de una cara, es el color de su casilla central
-     * @return 
+     *
+     * @return
      */
     public String getColorCara() {
         return fila1.getCasillas().get(1);
@@ -101,7 +226,8 @@ public class Cara implements Cloneable, Serializable {
 
     /**
      * Muestra una cara en la salida
-     * @return 
+     *
+     * @return
      */
     @Override
     public String toString() {
@@ -119,7 +245,8 @@ public class Cara implements Cloneable, Serializable {
 
     /**
      * Devuelve una copia de esta cara
-     * @return 
+     *
+     * @return
      */
     @Override
     public Object clone() {
@@ -128,8 +255,9 @@ public class Cara implements Cloneable, Serializable {
 
     /**
      * Verdadero cuando la cara del argumento es idéntica
+     *
      * @param obj
-     * @return 
+     * @return
      */
     @Override
     public boolean equals(Object obj) {
@@ -150,7 +278,8 @@ public class Cara implements Cloneable, Serializable {
 
     /**
      * Número de casillas que se corresponden con el color de esta cara
-     * @return 
+     *
+     * @return
      */
     public int completado() {
         String color = getColorCara();
@@ -168,12 +297,12 @@ public class Cara implements Cloneable, Serializable {
 
     /**
      * Hay una cruz en la cara por si sirve de algo
-     * @return 
+     *
+     * @return
      */
     public boolean cruz() {
         return fila0.getCasillas().get(1).equals(getColorCara()) && fila1.correcta()
                 && fila2.getCasillas().get(1).equals(getColorCara());
     }
-
 
 }

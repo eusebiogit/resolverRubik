@@ -5,7 +5,8 @@ import java.util.Hashtable;
 
 /**
  * En esta estrategia, cada vez que se encuentra una solución parcial mejor que
- * la anterior, si borra la frontera por completo.
+ * la anterior, se borra la frontera por completo. Las consecuencias son que avanza rápido
+ * pero las soluciones son largas y la frontera puede quedar vacia.
  *
  * @author ordenador
  */

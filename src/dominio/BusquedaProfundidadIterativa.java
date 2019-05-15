@@ -47,7 +47,9 @@ public class BusquedaProfundidadIterativa extends BusquedaProfundidadAcotada {
         do {
             solucion = super.buscar();
             if (solucion == null) {
+                System.out.println("Árbol en profundidad "+profundidadMaxima+" completada");
                 profundidadMaxima += iteracion;
+                System.out.println("Explorando nueva profundidad :"+profundidadMaxima);
                 complejidadTemporalIteraciones.add(super.getComplejidadTemporal());
                 complejidadEspacialIteraciones.add(super.getComplejidadEspacial());
             }

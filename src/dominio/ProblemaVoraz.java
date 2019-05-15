@@ -53,7 +53,7 @@ public class ProblemaVoraz extends Problema {
      * @return
      */
     protected int heuristica(Estado e) {
-        return 54-e.getActual().completado();
+        return e.getActual().getValorDistanciaManhatan();
     }
 
     /**

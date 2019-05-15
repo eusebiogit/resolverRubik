@@ -391,6 +391,21 @@ public class Cubo implements Cloneable, Serializable {
         }
         return r;
     }
+    
+    /**
+     * Devuelve la suma de las distancias de las casillas a su posición correcta
+     * Si una casilla está en su cara vale 0 si está en una cara adyacente 1...
+     * @return 
+     */
+    public int getValorDistanciaManhatan(){
+        ArrayList<Cara> caras=this.getCaras();
+        int valor=0;
+        for (Cara c:caras){
+            valor+=c.getValorCara();
+        }
+        return valor;
+    }
+    
 
     /**
      * Identifica un cubo

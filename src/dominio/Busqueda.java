@@ -23,7 +23,6 @@ import persistencia.OperacionesPersistencia;
  */
 public abstract class Busqueda {
 
-    protected int vecespoda = 0;
     protected int avance;
     protected Problema problema;
     protected double costo;
@@ -77,7 +76,7 @@ public abstract class Busqueda {
     }
 
     /**
-     * Si la poda está activada los nodos peores no se añaden a la búsqueda
+     * La poda evita repetir estados que ya han sido visitados
      *
      * @param n
      * @return
@@ -90,12 +89,7 @@ public abstract class Busqueda {
             if (valor == null) {
                 estados.put(key, n.getProfundidad());
             } else {
-                if (valor <= n.getValor()) {
-                    r = true;
-                    vecespoda++;
-                } else {
-                    estados.put(key, n.getProfundidad());
-                }
+                r = true;
             }
         }
 

@@ -56,24 +56,5 @@ public class ProblemaVoraz extends Problema {
         return e.getActual().getValorDistanciaManhatan();
     }
 
-    /**
-     *
-     * @param e
-     * @return
-     */
-    protected int heuristicaProbabilistico(Estado e) {
-        return (int) uniforme(0, 54);
-
-    }
-
-    /**
-     *
-     * @param a
-     * @param b
-     * @return
-     */
-    protected static double uniforme(int a, int b) {
-        return a + (b - a) * Math.random();
-    }
 
 }

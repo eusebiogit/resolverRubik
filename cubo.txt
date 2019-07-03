@@ -1,0 +1,25 @@
+blanco amarillo amarillo 
+blanco rojo rojo 
+naranja naranja amarillo 
+
+rojo amarillo amarillo 
+blanco blanco naranja 
+rojo rojo rojo 
+
+verde amarillo blanco 
+azul naranja verde 
+blanco blanco naranja 
+
+verde rojo naranja 
+blanco amarillo naranja 
+amarillo naranja verde 
+
+rojo rojo naranja 
+verde verde verde 
+azul azul verde 
+
+blanco amarillo azul 
+verde azul azul 
+azul azul azul 
+
+

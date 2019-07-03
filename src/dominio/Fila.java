@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dominio;
 
 import java.io.Serializable;
@@ -19,14 +14,36 @@ public class Fila implements Cloneable, Serializable{
     private String casilla1;
     private String casilla2;
 
+    /**
+     * 
+     * @param casilla0
+     * @param casilla1
+     * @param casilla2 
+     */
     public Fila(String casilla0, String casilla1, String casilla2) {
         this.casilla0 = casilla0;
         this.casilla1 = casilla1;
         this.casilla2 = casilla2;
     }
     
-
+    /**
+     * 
+     * @param array 
+     */
+    public Fila(String array[]) {
+        if(array.length==3){
+            this.casilla0=array[0];
+            this.casilla1=array[1];
+            this.casilla2=array[2];
+        }
     
+    }
+    
+
+    /**
+     * Casillas de una fila de izquierda a derecha
+     * @return 
+     */
     public ArrayList<String> getCasillas(){
         ArrayList<String> r=new ArrayList();
         r.add(casilla0);
@@ -35,6 +52,11 @@ public class Fila implements Cloneable, Serializable{
         return r;
     }
     
+    /**
+     * Gira una fila
+     * @param l
+     * @return 
+     */
     public Fila girar(Fila l){
         
         Fila actual =(Fila)clone();
@@ -45,13 +67,20 @@ public class Fila implements Cloneable, Serializable{
         return actual;
     }
     
-    
+    /**
+     * 
+     * @return 
+     */
     @Override
     public Object clone(){
       Object fila=new Fila(casilla0,casilla1,casilla2);
       return fila;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public String toString(){
         String r=casilla0;
         String aux;
@@ -62,13 +91,21 @@ public class Fila implements Cloneable, Serializable{
         r+=aux;
         return r;
     }
-    
+    /**
+     * usado por toString para dar formato
+     * @param nombre
+     * @return 
+     */
     private String rellenar(String nombre){
         for(int i=nombre.length();i<=8;i++)
             nombre+=" ";
         return nombre;
     }
     
+    /**
+     * todas las casillas del mismo color, posible heurística
+     * @return 
+     */
     public boolean correcta(){
         return casilla0.equals(casilla1)&&
                 casilla1.equals(casilla2);

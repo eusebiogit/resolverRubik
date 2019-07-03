@@ -28,6 +28,19 @@ public class Cara implements Cloneable, Serializable {
     }
 
     /**
+     * 
+     * @param array 
+     */
+    public Cara(Fila array[]) {
+        if (array.length == 3) {
+            this.fila0 = array[0];
+            this.fila1 = array[1];
+            this.fila2 = array[2];
+        }
+
+    }
+
+    /**
      * Devuelve el valor de la cara en función de sus casillas
      *
      * @return

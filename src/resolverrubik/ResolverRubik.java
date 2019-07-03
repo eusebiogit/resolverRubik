@@ -19,7 +19,17 @@ public class ResolverRubik {
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
         InterfazUsuario iu=new InterfazUsuario();
-        iu.menu();
+        iu=new InterfazUsuario();
+        
+        //Puede cargarse como parametro posicion del archivo que contiene el cubo
+        if(args.length==1){
+            iu.menu(args[0]);
+            
+        }else{
+            iu.menu("cubo/cubo.txt");
+        }
+        
+        
     }
     
 }

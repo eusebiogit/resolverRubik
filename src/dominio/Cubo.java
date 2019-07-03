@@ -1,5 +1,7 @@
 package dominio;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -10,6 +12,11 @@ import java.util.Objects;
  * @author ordenador
  */
 public class Cubo implements Cloneable, Serializable {
+
+    /**
+     * Colores que puede tener el cubo
+     */
+    private static String colores[] = {"rojo", "blanco", "naranja", "amarillo", "verde", "azul"};
 
     /**
      * Caras en orden a como debe verse el cubo físico para aplicar las
@@ -391,21 +398,21 @@ public class Cubo implements Cloneable, Serializable {
         }
         return r;
     }
-    
+
     /**
      * Devuelve la suma de las distancias de las casillas a su posición correcta
      * Si una casilla está en su cara vale 0 si está en una cara adyacente 1...
-     * @return 
+     *
+     * @return
      */
-    public int getValorDistanciaManhatan(){
-        ArrayList<Cara> caras=this.getCaras();
-        int valor=0;
-        for (Cara c:caras){
-            valor+=c.getValorCara();
+    public int getValorDistanciaManhatan() {
+        ArrayList<Cara> caras = this.getCaras();
+        int valor = 0;
+        for (Cara c : caras) {
+            valor += c.getValorCara();
         }
         return valor;
     }
-    
 
     /**
      * Identifica un cubo
@@ -441,8 +448,9 @@ public class Cubo implements Cloneable, Serializable {
 
     /**
      * Asigna un entero a cada color
+     *
      * @param color
-     * @return 
+     * @return
      */
     public int get(String color) {
         int r = 1;
@@ -467,6 +475,88 @@ public class Cubo implements Cloneable, Serializable {
                 break;
         }
         return r;
+    }
+
+    /**
+     * Devuelve verdadero si el color del cubo es valido
+     * @param color
+     * @return 
+     */
+    public static boolean colorValido(String color) {
+        return Cubo.esta(color, Cubo.colores);
+
+    }
+
+    /**
+     * Devuelve verdadero si una cadena está dentro de una lista de cadenas String
+     * @param c
+     * @param l
+     * @return 
+     */
+    private static boolean esta(String c, String[] l) {
+        boolean esta = false;
+        for (int i = 0; i < l.length && !esta; i++) {
+            if (c.equals(l[i])) {
+                esta = true;
+            }
+        }
+        return esta;
+    }
+
+    
+    /**
+     * genera un archivo con el cubo para poder cargarlo después si se necesita
+     * valor por defecto
+     */
+    public void persistirCubo() {
+        persistirCubo("");
+    }
+    
+    /**
+     * genera un archivo con el cubo para poder cargarlo después si se necesita
+     */
+    public void persistirCubo(String dir) {
+        if(dir.equals("")){
+            dir="cubo.txt";
+        }
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        try {
+            fichero = new FileWriter("cubo.txt");
+            pw = new PrintWriter(fichero);
+            pw.println(this.getContenido());
+
+        } catch (Exception e) {
+            System.out.println("");
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != fichero) {
+                    fichero.close();
+                }
+            } catch (Exception e2) {
+                System.out.println("");
+                e2.printStackTrace();
+            }
+        }
+    }
+
+    private String getContenido() {
+        String res="";
+        ArrayList<Cara> caras = this.getCaras();
+        ArrayList<Fila> filas;
+        for (Cara cara : caras) {
+            filas = cara.getFilas();
+            for (Fila f : filas) {
+                ArrayList<String> casillas = f.getCasillas();
+                for(String c:casillas){
+                    res+=c+" ";
+                }
+                res+="\n";
+            }
+            res+="\n";
+        }
+        return res;
     }
 
 }

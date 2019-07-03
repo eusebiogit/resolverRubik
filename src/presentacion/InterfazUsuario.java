@@ -3,6 +3,7 @@ package presentacion;
 import dominio.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import persistencia.OperacionesPersistencia;
 
 /**
  * Se desarrollará una interfaz de usuario
@@ -11,50 +12,21 @@ import java.util.Hashtable;
  */
 public class InterfazUsuario {
 
-    public void menu() throws Exception {
+    public void menu(String dir) throws Exception {
 
-//        Cubo cubo= getCuboCorrecto();
-        Fila f0 = new Fila("blanco", "amarillo", "amarillo");
-        Fila f1 = new Fila("blanco", "rojo", "rojo");
-        Fila f2 = new Fila("rojo", "rojo", "rojo");
-
-        Cara c0 = new Cara(f0, f1, f2);
-
-        f0 = new Fila("rojo", "amarillo", "amarillo");
-        f1 = new Fila("blanco", "blanco", "naranja");
-        f2 = new Fila("blanco", "blanco", "naranja");
-
-        Cara c1 = new Cara(f0, f1, f2);
-
-        f0 = new Fila("verde", "amarillo", "blanco");
-        f1 = new Fila("azul", "naranja", "verde");
-        f2 = new Fila("amarillo", "naranja", "verde");
-
-        Cara c2 = new Cara(f0, f1, f2);
-
-        f0 = new Fila("verde", "rojo", "naranja");
-        f1 = new Fila("blanco", "amarillo", "naranja");
-        f2 = new Fila("naranja", "naranja", "amarillo");
-
-        Cara c3 = new Cara(f0, f1, f2);
-
-        f0 = new Fila("rojo", "rojo", "naranja");
-        f1 = new Fila("verde", "verde", "verde");
-        f2 = new Fila("azul", "azul", "verde");
-
-        Cara c4 = new Cara(f0, f1, f2);
-
-        f0 = new Fila("azul", "azul", "azul");
-        f1 = new Fila("amarillo", "azul", "azul");
-        f2 = new Fila("blanco", "verde", "azul");
-
-        Cara c5 = new Cara(f0, f1, f2);
-        Cubo cubo = new Cubo(c0, c1, c2, c3, c4, c5);
-
+//     
+//se lee el cubo del archivo
+        Cubo cubo = OperacionesPersistencia.leerCubo(dir);
+        
+        //se selecciona un tipo de problema
 //        Problema p = new Problema(cubo);
         ProblemaA p = new ProblemaA(cubo);
 //        ProblemaBRPM p = new ProblemaBRPM(cubo);
 //        ProblemaVoraz p = new ProblemaVoraz(cubo);
+
+
+//Se selecciona una estrategia de búsqueda
+
 
 //        BusquedaVoraz b = new BusquedaVoraz(p, true);
 //        BusquedaPodaFuerte b = new BusquedaPodaFuerte(p, true);

@@ -138,10 +138,7 @@ public class Estado implements Serializable {
      */
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.actual);
-        hash = 97 * hash + Objects.hashCode(this.alcanzar);
-        return hash < 0 ? hash * -1 : hash;
+        return this.actual.hashCode()*this.accion.hashCode();
     }
 
 }

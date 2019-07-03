@@ -86,8 +86,8 @@ public abstract class Busqueda {
         if (poda) {
             Integer key = n.getActual().hashCode();
             Integer valor = estados.get(key);
-            if (valor == null) {
-                estados.put(key, n.getProfundidad());
+            if (valor == null || valor < n.getValor()) {
+                estados.put(key, n.getValor());
             } else {
                 r = true;
             }

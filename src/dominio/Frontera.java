@@ -66,18 +66,29 @@ public class Frontera {
      */
     public void insertarOrdenado(NodoBusqueda es) {
         boolean dentro = false;
-        if (!frontera.isEmpty()) {
-            for (int i = 0; i < frontera.size() && !dentro; i++) {
-                if (es.compareTo(frontera.get(i)) < 0) {
-                    frontera.add(i, es);
+        int minimo = 0;
+        int maximo = this.frontera.size() - 1;
+        int medio;
+        while (!dentro) {
+            medio = (maximo + minimo) / 2;
+            if (maximo <= 0) {
+                this.frontera.add(es);
+                dentro = true;
+            } else {
+                if (medio == maximo || medio == minimo) {
+                    this.frontera.add(medio, es);
                     dentro = true;
+                } else {
+                    if (es.compareTo(frontera.get(medio)) < 0) {
+                        maximo = medio;
+                    } else {
+                        minimo = medio;
+                    }
                 }
             }
         }
-        if (!dentro) {
-            insertar(es);
-        }
     }
+    
 
     /**
      * Inserta un nodo de búsqueda por delante a la frontera

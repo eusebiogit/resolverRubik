@@ -1,32 +1,25 @@
-
-
-
-
-
-
-blanco amarillo amarillo
-blanco rojo rojo
+rojo amarillo naranja
+rojo rojo rojo
 rojo rojo rojo
 
 
-rojo amarillo amarillo
-blanco blanco naranja
-blanco blanco naranja
+amarillo blanco rojo
+blanco blanco blanco
+blanco blanco blanco
 
+blanco verde blanco
+naranja naranja naranja
+naranja amarillo naranja
 
-verde amarillo blanco
-azul naranja verde
-amarillo naranja verde
+naranja amarillo amarillo
+azul amarillo amarillo
+amarillo rojo amarillo 
 
-verde rojo naranja
-blanco amarillo naranja
-naranja naranja amarillo 
-
-rojo rojo naranja
+verde naranja verde
+naranja verde verde
 verde verde verde
-azul azul verde
 
 
 azul azul azul
-amarillo azul azul   
-blanco verde azul 
+verde azul azul   
+azul azul azul 

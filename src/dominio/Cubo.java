@@ -401,7 +401,7 @@ public class Cubo implements Cloneable, Serializable {
 
     /**
      * Devuelve la suma de las distancias de las casillas a su posición correcta
-     * Si una casilla está en su cara vale 0 si está en una cara adyacente 1...
+     *  Si una casilla está en su cara vale 0 si está en una cara adyacente 1...
      *
      * @return
      */
@@ -541,6 +541,11 @@ public class Cubo implements Cloneable, Serializable {
         }
     }
 
+    /**
+     * Devuelve un string con la información del cubo
+     * formateada para guardarla en un archivo
+     * @return 
+     */
     private String getContenido() {
         String res="";
         ArrayList<Cara> caras = this.getCaras();

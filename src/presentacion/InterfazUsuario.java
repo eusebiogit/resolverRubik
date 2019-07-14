@@ -34,8 +34,8 @@ public class InterfazUsuario {
 //        BusquedaAleatorio b=new BusquedaAleatorio(p,true);
 //        BusquedaAnchura b=new BusquedaAnchura(p,false);
 //        BusquedaProfundidadSimple b=new BusquedaProfundidadSimple(p,true);
-//         BusquedaProfundidadAcotada b=new BusquedaProfundidadAcotada(p,8,true);
-//        BusquedaProfundidadIterativa b = new BusquedaProfundidadIterativa(p, 8, 1, true);
+//         BusquedaProfundidadAcotada b=new BusquedaProfundidadAcotada(p,20,true);
+//        BusquedaProfundidadIterativa b = new BusquedaProfundidadIterativa(p, 5, 1, true);
 
         System.out.println(b.buscar());
 

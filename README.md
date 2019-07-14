@@ -58,7 +58,6 @@ Yn Consiste en mover una columna hacia abajo:
 
 Zn Transpone una cara a partir de la cara roja, en profundidad hacia la derecha, z0 transpone la cara roja hacia la derecha, z2 la cara naranja en sentido opuesto.
 
-            cubo.Z(2);
 
             Cara2:
             ------------------------------------
@@ -66,6 +65,8 @@ Zn Transpone una cara a partir de la cara roja, en profundidad hacia la derecha,
             amarillo  || naranja   || naranja  |
             verde     || azul      || amarillo |
             ------------------------------------
+            
+cubo.Z(2);
 
             Cara2:
             ------------------------------------

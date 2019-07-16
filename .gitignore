@@ -10,3 +10,5 @@ manifest\.mf
 rubik\.tar\.gz
 
 rubik\.zip
+
+*.txt~
